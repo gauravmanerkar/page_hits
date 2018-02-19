@@ -1,0 +1,6 @@
+name: Page Hits
+description: 'This module used for displaying page statistics.'
+package: Other
+configure: page_hits.settings
+type: module
+core: 8.x
