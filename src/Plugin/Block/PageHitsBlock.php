@@ -3,6 +3,14 @@
 namespace Drupal\page_hits\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
+use Drupal\Core\Block\BlockPluginInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\Form\FormBuilderInterface;
+use Drupal\Core\Config\ConfigFactoryInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Drupal\Core\Routing\CurrentRouteMatch;
 
 /**
  * Provides a 'page_hits' block.
@@ -13,13 +21,38 @@ use Drupal\Core\Block\BlockBase;
  *   category = @Translation("Page Hits block")
  * )
  */
-class PageHitsBlock extends BlockBase {
+class PageHitsBlock extends BlockBase implements BlockPluginInterface, ContainerFactoryPluginInterface {
+
+  protected $configfactory;
+
+  /**
+    * @param array $configuration
+    * @param string $plugin_id
+    * @param mixed $plugin_definition
+    * @param \Drupal\Core\Form\FormBuilderInterface $form_builder
+    */
+    public function __construct(array $configuration, $plugin_id, $plugin_definition, ConfigFactoryInterface $config_factory) {
+        parent::__construct($configuration, $plugin_id, $plugin_definition);
+        $this->configfactory = $config_factory;
+    }
+
+  /**
+   * {@inheritdoc}
+   */
+    public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+       return new static(
+            $configuration,
+            $plugin_id,
+            $plugin_definition,
+            $container->get('config.factory')
+          );
+    }
 
   /**
    * {@inheritdoc}
    */
   public function build() {
-    $config = \Drupal::config('page_hits.settings');
+    $config = $this->configfactory->get('page_hits.settings');
     $ip = \Drupal::request()->getClientIp();
     $unique_visitor = 0;
     $total_visitor = 0;
