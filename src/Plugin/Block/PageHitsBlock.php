@@ -1,14 +1,8 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\page_hits\Plugin\Block\PageHitsBlock.
- */
- 
 namespace Drupal\page_hits\Plugin\Block;
- 
+
 use Drupal\Core\Block\BlockBase;
-use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Provides a 'page_hits' block.
@@ -23,7 +17,6 @@ class PageHitsBlock extends BlockBase {
   /**
    * {@inheritdoc}
    */
-  
   public function build() {
     $config = \Drupal::config('page_hits.settings');
     $ip = \Drupal::request()->getClientIp();
