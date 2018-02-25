@@ -3,4 +3,3 @@ services:
     class: Drupal\page_hits\EventSubscriber\PageHitsSubscriber
     tags:
       - {name: event_subscriber}
-      
