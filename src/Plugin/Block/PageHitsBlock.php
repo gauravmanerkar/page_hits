@@ -10,7 +10,6 @@ namespace Drupal\page_hits\Plugin\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Form\FormStateInterface;  
  
- 
 /**
  * Provides a 'page_hits' block.
  *
@@ -25,7 +24,6 @@ class PageHitsBlock extends BlockBase {
    * {@inheritdoc}
    */
   public function build() {
-
     $config = \Drupal::config('page_hits.settings');
     $ip = \Drupal::request()->getClientIp();
     $unique_visitor = 0;
@@ -39,16 +37,14 @@ class PageHitsBlock extends BlockBase {
 
     $result = [];
     $node =  \Drupal::request()->attributes->get('node');
-    if(!empty($node))
-    {
+    if (!empty($node)) {
       $result =  page_hits_get_data_by_nid($node->id());
     }
     else {
       $result =  page_hits_get_data_by_url($page_url);
     }
 
-    if(!empty($result)) 
-    {
+    if (!empty($result)) {
       $ip = $result['ip'];
       $unique_visitor = $result['unique_visits'];
       $total_visitor = $result['total_visitors'];
@@ -59,19 +55,19 @@ class PageHitsBlock extends BlockBase {
     $output = '<div id="counter">';
     $output .= '<ul>';
 
-    if($config->get('show_user_ip_address')){
+    if ($config->get('show_user_ip_address')){
       $output .= '<li>'.$this->t('YOUR IP: ').'<strong>'.$ip.'</strong></li>';
     }
-    if($config->get('show_unique_page_visits')){
+    if ($config->get('show_unique_page_visits')){
       $output .= '<li>'.$this->t('UNIQUE VISITORS: ').'<strong>'.number_format($unique_visitor).'</strong></li>';
     }
-    if($config->get('show_total_page_count')){
+    if ($config->get('show_total_page_count')){
       $output .= '<li>'.$this->t('TOTAL VISITORS: ').'<strong>'.number_format($total_visitor).'</strong></li>';
     }
-    if($config->get('show_page_count_of_logged_in_user') &&  !empty($current_user) && !empty($current_user->id())){
+    if ($config->get('show_page_count_of_logged_in_user') &&  !empty($current_user) && !empty($current_user->id())){
       $output .= '<li>'.$this->t('TOTAL VISITS BY YOU: ').'<strong>'.number_format($total_visitor_by_user).'</strong></li>';
     }
-    if($config->get('show_total_page_count_of_week')){
+    if ($config->get('show_total_page_count_of_week')){
       $output .= '<li>'.$this->t('TOTAL VISITS IN THIS WEEK: ').'<strong>'.number_format($total_visitor_in_week).'</strong></li>';
     }
      
@@ -88,4 +84,5 @@ class PageHitsBlock extends BlockBase {
     ];
     return $build;
   }
+
 }
