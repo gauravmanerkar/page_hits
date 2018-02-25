@@ -7,6 +7,9 @@ use Drupal\Core\Block\BlockPluginInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Session\AccountProxy;
+use Drupal\Core\Session\AccountProxyInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Provides a 'page_hits' block.
@@ -21,12 +24,16 @@ class PageHitsBlock extends BlockBase implements BlockPluginInterface, Container
 
   protected $configfactory;
 
+  protected $account;
+
   /**
    * {@inheritdoc}
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, ConfigFactoryInterface $config_factory) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, ConfigFactoryInterface $config_factory, AccountProxyInterface $account,RequestStack $requestStack) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
-    $this->configfactory = $config_factory;
+        $this->configfactory = $config_factory;
+        $this->account = $account;
+        $this->requestStack = $requestStack;
   }
 
   /**
@@ -37,7 +44,9 @@ class PageHitsBlock extends BlockBase implements BlockPluginInterface, Container
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('config.factory')
+      $container->get('config.factory'),
+      $container->get('current_user'),
+      $container->get('request_stack')
     );
   }
 
@@ -46,15 +55,15 @@ class PageHitsBlock extends BlockBase implements BlockPluginInterface, Container
    */
   public function build() {
     $config = $this->configfactory->get('page_hits.settings');
-    $ip = \Drupal::request()->getClientIp();
+    $ip = $this->requestStack->getCurrentRequest()->getClientIp();
     $unique_visitor = 0;
     $total_visitor = 0;
     $total_visitor_by_user = 0;
     $total_visitor_in_week = 0;
-    $current_user = \Drupal::currentUser();
+    $current_user = $this->account;
 
     global $base_url;
-    $page_url = $base_url . \Drupal::request()->getRequestUri();
+    $page_url = $base_url . $this->requestStack->getCurrentRequest()->getRequestUri();
 
     $result = [];
     $node = \Drupal::request()->attributes->get('node');
