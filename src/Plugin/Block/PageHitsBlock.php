@@ -22,11 +22,8 @@ class PageHitsBlock extends BlockBase implements BlockPluginInterface, Container
   protected $configfactory;
 
   /**
-    * @param array $configuration
-    * @param string $plugin_id
-    * @param mixed $plugin_definition
-    * @param \Drupal\Core\Form\FormBuilderInterface $form_builder
-    */
+   * {@inheritdoc}
+   */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, ConfigFactoryInterface $config_factory) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->configfactory = $config_factory;
