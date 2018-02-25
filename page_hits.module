@@ -97,3 +97,15 @@ function page_hits_calculate_stats(array $result) {
 	return $stats;
 }
 
+/**
+ * Implements hook_help().
+ */
+function page_hits_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.page_hits':
+      $text = file_get_contents(dirname(__FILE__) . "/README.txt");
+      return '<pre>' . $text . '</pre>';
+  }
+}
+
+
