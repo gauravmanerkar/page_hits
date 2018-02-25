@@ -6,3 +6,4 @@ page_hits.settings:
   requirements:
     _permission: 'administer site configuration'
     
+    
