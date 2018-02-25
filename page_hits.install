@@ -50,7 +50,6 @@ function page_hits_schema() {
       ],
     ],
     'primary key' => ['id'],
-  );
-
-   return $schema;
+  ],
+    return $schema;
 }

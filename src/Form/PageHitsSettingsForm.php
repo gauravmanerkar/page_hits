@@ -84,14 +84,14 @@ class PageHitsSettingsForm extends ConfigFormBase {
     $form['content']['increment_page_count_for_admin'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Increment page count for admin users'),
-      '#default_value' => $config->get('increment_page_count_for_admin')
+      '#default_value' => $config->get('increment_page_count_for_admin'),
     ];
     $form['content']['show_user_ip_address'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Show IP address of user'),
       '#default_value' => $config->get('show_user_ip_address'),
     ];
-     $form['content']['show_unique_page_visits'] = [
+    $form['content']['show_unique_page_visits'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Show total number of unique page visits'),
       '#default_value' => $config->get('show_unique_page_visits'),
@@ -132,7 +132,7 @@ class PageHitsSettingsForm extends ConfigFormBase {
   }
 
   public function submitPageHitsClear(array &$form, FormStateInterface $form_state) {
-    page_hits_flush_all();
+    return page_hits_flush_all();
     drupal_set_message($this->t('Page Hits cleared.'));
   }
 
