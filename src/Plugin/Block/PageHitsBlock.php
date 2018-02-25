@@ -4,13 +4,9 @@ namespace Drupal\page_hits\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Block\BlockPluginInterface;
-use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\Form\FormBuilderInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
-use Symfony\Component\HttpFoundation\RequestStack;
-use Drupal\Core\Routing\CurrentRouteMatch;
 
 /**
  * Provides a 'page_hits' block.
