@@ -131,8 +131,12 @@ class PageHitsSettingsForm extends ConfigFormBase {
     parent::submitForm($form, $form_state);
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function submitPageHitsClear(array &$form, FormStateInterface $form_state) {
     page_hits_flush_all();
     drupal_set_message($this->t('Page Hits cleared.'));
   }
+
 }

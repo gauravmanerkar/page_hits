@@ -6,15 +6,13 @@ use Drupal\Core\Render\HtmlResponse;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
-use Drupal\Core\Site\Settings;
-use Drupal\Core\State\StateInterface;
 
 class PageHitsSubscriber implements EventSubscriberInterface {
 
   /**
    * {@inheritdoc}
    */
-  static function getSubscribedEvents() {
+  public static function getSubscribedEvents() {
     $events[KernelEvents::TERMINATE][] = ['initialize', 100];
     return $events;
   }
@@ -22,7 +20,7 @@ class PageHitsSubscriber implements EventSubscriberInterface {
   /**
    * {@inheritdoc}
    */
-  static function initialize(Event $event) { 
+  static function initialize(Event $event) {
     global $base_url;
 
     $admin = in_array('administrator', \Drupal::currentUser()->getRoles());
@@ -36,7 +34,6 @@ class PageHitsSubscriber implements EventSubscriberInterface {
     $node = \Drupal::request()->attributes->get('node');
     $is_admin_interface = \Drupal::service('router.admin_context')->isAdminRoute();
     if (!$is_admin_interface && ($event->getResponse() instanceof HtmlResponse) && $logEntry) {
-      
       $fields = [];
       $fields['ip'] = \Drupal::request()->getClientIp();
       $session_manager = \Drupal::service('session_manager');
@@ -52,4 +49,5 @@ class PageHitsSubscriber implements EventSubscriberInterface {
         ->execute();
     }
   }
+
 }
