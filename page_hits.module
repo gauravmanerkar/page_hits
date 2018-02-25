@@ -94,3 +94,10 @@ function page_hits_help($route_name, RouteMatchInterface $route_match) {
       return '<pre>' . $text . '</pre>';
   }
 }
+
+/**
+ * page type.
+ */
+function page_hits_page_type() {
+  return \Drupal::request()->attributes->get('node');
+}
