@@ -7,6 +7,9 @@ use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
 
+/**
+ * Logs page hits.
+ */
 class PageHitsSubscriber implements EventSubscriberInterface {
 
   /**
