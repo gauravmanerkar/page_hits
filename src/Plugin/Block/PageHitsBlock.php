@@ -7,7 +7,6 @@ use Drupal\Core\Block\BlockPluginInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
-use Drupal\Core\Session\AccountProxy;
 use Drupal\Core\Session\AccountProxyInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
@@ -29,11 +28,11 @@ class PageHitsBlock extends BlockBase implements BlockPluginInterface, Container
   /**
    * {@inheritdoc}
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, ConfigFactoryInterface $config_factory, AccountProxyInterface $account,RequestStack $requestStack) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, ConfigFactoryInterface $config_factory, AccountProxyInterface $account, RequestStack $requestStack) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
-        $this->configfactory = $config_factory;
-        $this->account = $account;
-        $this->requestStack = $requestStack;
+    $this->configfactory = $config_factory;
+    $this->account = $account;
+    $this->requestStack = $requestStack;
   }
 
   /**
