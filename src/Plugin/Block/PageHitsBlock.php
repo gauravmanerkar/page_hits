@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Contains \Drupal\page_hits\Plugin\Block\PageHitsBlock.
@@ -59,19 +60,19 @@ class PageHitsBlock extends BlockBase {
     $output .= '<ul>';
 
     if($config->get('show_user_ip_address')){
-      $output .= '<li>'.t('YOUR IP: ').'<strong>'.$ip.'</strong></li>';
+      $output .= '<li>'.$this->t('YOUR IP: ').'<strong>'.$ip.'</strong></li>';
     }
     if($config->get('show_unique_page_visits')){
-      $output .= '<li>'.t('UNIQUE VISITORS: ').'<strong>'.number_format($unique_visitor).'</strong></li>';
+      $output .= '<li>'.$this->t('UNIQUE VISITORS: ').'<strong>'.number_format($unique_visitor).'</strong></li>';
     }
     if($config->get('show_total_page_count')){
-      $output .= '<li>'.t('TOTAL VISITORS: ').'<strong>'.number_format($total_visitor).'</strong></li>';
+      $output .= '<li>'.$this->t('TOTAL VISITORS: ').'<strong>'.number_format($total_visitor).'</strong></li>';
     }
     if($config->get('show_page_count_of_logged_in_user') &&  !empty($current_user) && !empty($current_user->id())){
-      $output .= '<li>'.t('TOTAL VISITS BY YOU: ').'<strong>'.number_format($total_visitor_by_user).'</strong></li>';
+      $output .= '<li>'.$this->t('TOTAL VISITS BY YOU: ').'<strong>'.number_format($total_visitor_by_user).'</strong></li>';
     }
     if($config->get('show_total_page_count_of_week')){
-      $output .= '<li>'.t('TOTAL VISITS IN THIS WEEK: ').'<strong>'.number_format($total_visitor_in_week).'</strong></li>';
+      $output .= '<li>'.$this->t('TOTAL VISITS IN THIS WEEK: ').'<strong>'.number_format($total_visitor_in_week).'</strong></li>';
     }
      
     $output .= '</ul>';

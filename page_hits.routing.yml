@@ -5,3 +5,4 @@ page_hits.settings:
     _title: 'Page Hits'
   requirements:
     _permission: 'administer site configuration'
+    

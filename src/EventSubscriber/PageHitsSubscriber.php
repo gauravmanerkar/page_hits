@@ -1,9 +1,7 @@
 <?php
+
 namespace Drupal\page_hits\EventSubscriber;
 
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Drupal\node\Entity\Node;
-use Symfony\Component\HttpFoundation;
 use Drupal\Core\Render\HtmlResponse;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Symfony\Component\EventDispatcher\Event;
@@ -27,8 +25,7 @@ class PageHitsSubscriber implements EventSubscriberInterface {
   }
 
 
-  static function initialize(Event $event) {
-    $request = $event->getRequest();  
+  static function initialize(Event $event) { 
     global $base_url;
 
     $admin = in_array('administrator', \Drupal::currentUser()->getRoles());
