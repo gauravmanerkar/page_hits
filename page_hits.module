@@ -26,7 +26,7 @@ function page_hits_get_data_by_nid($nid) {
   $query->condition('p.nid', $nid);
   $result = $query->execute()->fetchAll();
   if (!empty($result)) {
-    return page_hits_calculate_stats($result);	
+    return page_hits_calculate_stats($result);
   }
   return $stats;
 }

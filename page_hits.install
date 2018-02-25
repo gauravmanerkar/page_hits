@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Install file for Page Hits.
@@ -8,47 +9,47 @@
  * Implements hook_schema().
  */
 function page_hits_schema() {
-  $schema['page_hits'] = array(
-    'fields' => array(
-      'id' => array(
+  $schema['page_hits'] = [
+    'fields' => [
+      'id' => [
         'type' => 'serial',
         'not null' => TRUE,
-      ),
-      'ip' => array(
+      ],
+      'ip' => [
         'type' => 'varchar',
         'length' => 32,
         'not null' => TRUE,
         'default' => '',
-      ),
-      'session_id' => array(
+      ],
+      'session_id' => [
         'type' => 'varchar',
         'length' => 500,
         'not null' => TRUE,
         'default' => '',
-      ),
-      'url' => array(
+      ],
+      'url' => [
         'type' => 'varchar',
         'length' => 255,
         'not null' => TRUE,
         'default' => '',
-      ),
-      'uid' => array(
+      ],
+      'uid' => [
         'type' => 'int',
         'not null' => TRUE,
         'default' => 0,
-      ),
-      'nid' => array(
+      ],
+      'nid' => [
         'type' => 'int',
         'not null' => FALSE,
         'default' => 0,
-      ),
-      'created' => array(
+      ],
+      'created' => [
         'type' => 'int',
         'not null' => TRUE,
         'default' => 0,
-      ),
-    ),
-    'primary key' => array('id'),
+      ],
+    ],
+    'primary key' => ['id'],
   );
 
    return $schema;

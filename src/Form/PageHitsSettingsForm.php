@@ -76,8 +76,6 @@ class PageHitsSettingsForm extends ConfigFormBase {
       '#submit' => ['::submitPageHitsClear'],
     ];
 
-
-    // Content counter settings.
     $form['content'] = [
       '#type' => 'details',
       '#title' => $this->t('Page Hits settings'),
