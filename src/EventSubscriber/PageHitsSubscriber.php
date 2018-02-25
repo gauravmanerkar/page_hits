@@ -20,7 +20,7 @@ class PageHitsSubscriber implements EventSubscriberInterface {
   /**
    * {@inheritdoc}
    */
-  static function initialize(Event $event) {
+  public static function initialize(Event $event) {
     global $base_url;
 
     $admin = in_array('administrator', \Drupal::currentUser()->getRoles());

@@ -10,15 +10,8 @@ namespace Drupal\page_hits\Plugin\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Form\FormStateInterface;  
  
- 
 /**
- * Provides a 'page_hits' block.
- *
- * @Block(
- *   id = "page_hits_block",
- *   admin_label = @Translation("Page Hits"),
- *   category = @Translation("Page Hits block")
- * )
+ * Logs page hits.
  */
 class PageHitsBlock extends BlockBase {
   /**
