@@ -5,6 +5,7 @@
  * Page Hits
  */
 
+use Drupal\Core\Routing\RouteMatchInterface;
 
 /**
  * Clear page_hits table.
@@ -13,7 +14,6 @@ function page_hits_flush_all() {
   \Drupal::database()->delete('page_hits')
 	->execute();
 }
-
 
 /**
  * Return page hits by node id.
