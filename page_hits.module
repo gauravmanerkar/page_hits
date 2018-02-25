@@ -96,7 +96,7 @@ function page_hits_help($route_name, RouteMatchInterface $route_match) {
 }
 
 /**
- * page type.
+ * Page type.
  */
 function page_hits_page_type() {
   return \Drupal::request()->attributes->get('node');
