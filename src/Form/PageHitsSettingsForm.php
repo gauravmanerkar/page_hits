@@ -66,13 +66,13 @@ class PageHitsSettingsForm extends ConfigFormBase {
 
     $form['clear_page_hits'] = [
       '#type' => 'details',
-      '#title' => t('Clear Page Hits'),
+      '#title' => $this->t('Clear Page Hits'),
       '#open' => TRUE,
     ];
 
     $form['clear_page_hits']['clear'] = [
       '#type' => 'submit',
-      '#value' => t('Clear all page hits'),
+      '#value' => $this->t('Clear all page hits'),
       '#submit' => ['::submitPageHitsClear'],
     ];
 
@@ -80,37 +80,37 @@ class PageHitsSettingsForm extends ConfigFormBase {
     // Content counter settings.
     $form['content'] = [
       '#type' => 'details',
-      '#title' => t('Page Hits settings'),
+      '#title' => $this->t('Page Hits settings'),
       '#open' => TRUE,
     ];
     $form['content']['increment_page_count_for_admin'] = [
       '#type' => 'checkbox',
-      '#title' => t('Increment page count for admin users'),
+      '#title' => $this->t('Increment page count for admin users'),
       '#default_value' => $config->get('increment_page_count_for_admin')
     ];
     $form['content']['show_user_ip_address'] = [
       '#type' => 'checkbox',
-      '#title' => t('Show IP address of user'),
+      '#title' => $this->t('Show IP address of user'),
       '#default_value' => $config->get('show_user_ip_address'),
     ];
      $form['content']['show_unique_page_visits'] = [
       '#type' => 'checkbox',
-      '#title' => t('Show total number of unique page visits'),
+      '#title' => $this->t('Show total number of unique page visits'),
       '#default_value' => $config->get('show_unique_page_visits'),
     ];
     $form['content']['show_total_page_count'] = [
       '#type' => 'checkbox',
-      '#title' => t('Show total number of page visits'),
+      '#title' => $this->t('Show total number of page visits'),
       '#default_value' => $config->get('show_total_page_count'),
     ];
     $form['content']['show_page_count_of_logged_in_user'] = [
       '#type' => 'checkbox',
-      '#title' => t('Show total number of page visits by logged in user'),
+      '#title' => $this->t('Show total number of page visits by logged in user'),
       '#default_value' => $config->get('show_page_count_of_logged_in_user'),
     ];
     $form['content']['show_total_page_count_of_week'] = [
       '#type' => 'checkbox',
-      '#title' => t('Show total number of page visits of the week'),
+      '#title' => $this->t('Show total number of page visits of the week'),
       '#default_value' => $config->get('show_total_page_count_of_week'),
     ];
 
